@@ -105,7 +105,7 @@ onMounted(async () => {
 
     for (const cd of trax_database) {
         for (const sample of cd.samples) {
-            let url = `/trax/audio/${cd.cd}_${sample.sample}.mp3`;
+            let url = `./trax/audio/${cd.cd}_${sample.sample}.mp3`;
             sampleBuffers.value[url] = await loadAudioAsBuffer(url);
             loadingProgress.value++;
         }
@@ -278,7 +278,7 @@ const addSourceNodesToAudioContext = (_audioContext) => {
 
     trackNodes.value.forEach((track) => {
         track.forEach(sample => {
-            let url = `/trax/audio/${sample.cd}_${sample.sample}.mp3`;
+            let url = `./trax/audio/${sample.cd}_${sample.sample}.mp3`;
             let offset = sample.position - songPlayPosition.value;
             if(offset > 0) {
                 sourceNodes.value.push(createSourceNode(_audioContext, sampleBuffers.value[url], offset, getSampleLength(sample.cd, sample.sample)));

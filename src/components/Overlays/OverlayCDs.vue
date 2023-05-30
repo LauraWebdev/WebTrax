@@ -5,7 +5,7 @@
             <TraxButton
                 v-for="cd in trax_database"
                 :key="cd.cd"
-                :icon="`/trax/images/${cd.cd}.gif`"
+                :icon="`./trax/images/${cd.cd}.gif`"
                 :label="cd.meta.title"
                 :sublabel="cd.meta.artist"
                 @click="inputSelectedCD = cd.cd"

@@ -40,7 +40,7 @@
 
         <nav>
             <TraxButton
-                :icon="`/trax/images/${selectedCD}.gif`"
+                :icon="`./trax/images/${selectedCD}.gif`"
                 :label="cdTitle"
                 :sublabel="cdArtist"
                 @click="overlayActiveCDs = true"
@@ -110,7 +110,7 @@ const playSample = (_sample) => {
         previewAudio.value.currentTime = 0;
     }
 
-    previewAudio.value = new Audio(`/trax/audio/${props.selectedCD}_${_sample}.mp3`);
+    previewAudio.value = new Audio(`./trax/audio/${props.selectedCD}_${_sample}.mp3`);
     previewAudio.value.play();
 };
 const stopSample = () => {

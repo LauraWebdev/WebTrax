@@ -1,35 +1,33 @@
-# web-trax
+# WebTrax
+Web-based Habbo Trax  
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+### Project Setup
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+#### Compile and Hot-Reload for Development
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+#### Compile and Minify for Production
 
 ```sh
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+#### Lint with [ESLint](https://eslint.org/)
 
 ```sh
 npm run lint
 ```
+
+
+### License
+This project was released under the [AGPL 3.0](LICENSE) license. This license covers everything besides assets found within `/public/trax`.
+
+### Disclaimer
+The rights to the assets used in this project remain by [Sulake Oy](https://www.sulake.com/). Habbo is a registered trademark by Sulake. WebTrax is a fan-project and in no way affiliated or was endorsed by Sulake.
