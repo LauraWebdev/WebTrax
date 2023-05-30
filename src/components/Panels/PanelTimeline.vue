@@ -1,79 +1,88 @@
 <template>
-    <section class="panel-timeline">
-        <div class="playhead"
-             :style="`left: ${150 + songPosition * 40}px`"
-        >
-            <div v-show="!isPlaying" class="dragarea" ref="DOMPlayhead"></div>
-            <div class="knob"
-                :class="{'active' : isDragging}"
-            ></div>
-        </div>
-        <div class="grid">
-            <span>Track</span>
-            <span
-                v-for="i in trackLength"
-            >
-                {{ i }}
-            </span>
-        </div>
-        <div class="timeline">
-            <div
-                v-for="(nodes, trackI) in trackNodes"
-                :key="trackI"
-                class="track"
-            >
-                <div class="controls">
-                    <span>Track #{{ trackI }}</span>
-                    <div>
-                        <TraxButton
-                            v-if="trackI > 0"
-                            mdi="trash-can"
-                            color="danger"
-                            mini
-                            @click="emit('removeTrack', trackI)"
-                        />
-                    </div>
-                </div>
-                <div class="nodes">
-                    <span
-                        v-for="i2 in trackLength"
-                        class="cell"
-                        @mouseenter="cellEnter(trackI, i2)"
-                        @mouseout="cellOut(trackI, i2)"
-                        @click="isPlaying ? false : emit('clickCell', trackI, i2)"
-                    >
-                        <template
-                            v-for="node in [nodes.find(x => x.position === i2 - 1)]"
-                        >
-                            <span
-                                v-if="node"
-                                class="node"
-                                :style="`width: ${getNodeLength(node.cd, node.sample) * 25 + (getNodeLength(node.cd, node.sample) - 1) * 15}px; background: ${ getCDColor(node.cd) };`"
-                            >
-                                <span :class="`mdi mdi-${getIcon(node.sample)}`"></span>
-                            </span>
-                        </template>
-                        <span
-                            class="node-ghost"
-                            v-if="activeTrack === trackI && activeCell === i2 && selectedTool === 'place' && !isPlaying"
-                            :style="`width: ${getNodeLength(selectedCD, selectedSample) * 25 + (getNodeLength(selectedCD, selectedSample) - 1) * 15}px; opacity: 0.3; background: ${ getCDColor(selectedCD) };`"
-                        >
-                            <span :class="`mdi mdi-${getIcon(selectedSample)}`"></span>
-                        </span>
-                    </span>
-                </div>
-            </div>
-        </div>
-
-        <div class="actions">
+  <section class="panel-timeline">
+    <div
+      class="playhead"
+      :style="`left: ${150 + songPosition * 40}px`"
+    >
+      <div
+        v-show="!isPlaying"
+        ref="DOMPlayhead"
+        class="dragarea"
+      />
+      <div
+        class="knob"
+        :class="{'active' : isDragging}"
+      />
+    </div>
+    <div class="grid">
+      <span>Track</span>
+      <span
+        v-for="i in trackLength"
+        :key="i"
+      >
+        {{ i }}
+      </span>
+    </div>
+    <div class="timeline">
+      <div
+        v-for="(nodes, trackI) in trackNodes"
+        :key="trackI"
+        class="track"
+      >
+        <div class="controls">
+          <span>Track #{{ trackI }}</span>
+          <div>
             <TraxButton
-                mdi="plus"
-                label="Add Track"
-                color="bright"
-                @click="emit('addTrack')"
+              v-if="trackI > 0"
+              mdi="trash-can"
+              color="danger"
+              mini
+              @click="emit('removeTrack', trackI)"
             />
+          </div>
         </div>
-    </section>
+        <div class="nodes">
+          <span
+            v-for="i2 in trackLength"
+            :key="i2"
+            class="cell"
+            @mouseenter="cellEnter(trackI, i2)"
+            @mouseout="cellOut(trackI, i2)"
+            @click="isPlaying ? false : emit('clickCell', trackI, i2)"
+          >
+            <template
+              v-for="node in [nodes.find(x => x.position === i2 - 1)]"
+              :key="node"
+            >
+              <span
+                v-if="node"
+                class="node"
+                :style="`width: ${getNodeLength(node.cd, node.sample) * 25 + (getNodeLength(node.cd, node.sample) - 1) * 15}px; background: ${ getCDColor(node.cd) };`"
+              >
+                <span :class="`mdi mdi-${getIcon(node.sample)}`" />
+              </span>
+            </template>
+            <span
+              v-if="activeTrack === trackI && activeCell === i2 && selectedTool === 'place' && !isPlaying"
+              class="node-ghost"
+              :style="`width: ${getNodeLength(selectedCD, selectedSample) * 25 + (getNodeLength(selectedCD, selectedSample) - 1) * 15}px; opacity: 0.3; background: ${ getCDColor(selectedCD) };`"
+            >
+              <span :class="`mdi mdi-${getIcon(selectedSample)}`" />
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <TraxButton
+        mdi="plus"
+        label="Add Track"
+        color="bright"
+        @click="emit('addTrack')"
+      />
+    </div>
+  </section>
 </template>
 
 <script setup>
@@ -140,7 +149,7 @@ const cellEnter = (_track, _cell) => {
     activeCell.value = _cell;
 };
 
-const cellOut = (_track, _cell) => {
+const cellOut = () => {
     activeTrack.value = null;
     activeCell.value = null;
 };

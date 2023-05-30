@@ -1,8 +1,13 @@
 <template>
-    <label :class="`i-switch ${disabled ? 'disabled' : ''}`">
-        <input type="checkbox" v-model="val" :disabled="disabled" @input="handleInput" />
-        <span class="background"></span>
-    </label>
+  <label :class="`i-switch ${disabled ? 'disabled' : ''}`">
+    <input
+      v-model="val"
+      type="checkbox"
+      :disabled="disabled"
+      @input="handleInput"
+    >
+    <span class="background" />
+  </label>
 </template>
 
 <script setup>

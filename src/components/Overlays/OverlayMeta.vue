@@ -1,31 +1,37 @@
 <template>
-    <dialog ref="DOMOverlayMeta">
-        <header>Metadata</header>
-        <main>
-            <TraxInput
-                label="Title"
-            >
-                <input type="text" v-model="inputTitle" />
-            </TraxInput>
-            <TraxInput
-                label="Artist"
-            >
-                <input type="text" v-model="inputArtist" />
-            </TraxInput>
-        </main>
-        <section class="actions">
-            <TraxButton
-                label="Close"
-                color="transparent"
-                @click="emit('close')"
-            />
-            <TraxButton
-                label="Save"
-                mdi="content-save"
-                @click="() => { emit('change', inputTitle, inputArtist); }"
-            />
-        </section>
-    </dialog>
+  <dialog ref="DOMOverlayMeta">
+    <header>Metadata</header>
+    <main>
+      <TraxInput
+        label="Title"
+      >
+        <input
+          v-model="inputTitle"
+          type="text"
+        >
+      </TraxInput>
+      <TraxInput
+        label="Artist"
+      >
+        <input
+          v-model="inputArtist"
+          type="text"
+        >
+      </TraxInput>
+    </main>
+    <section class="actions">
+      <TraxButton
+        label="Close"
+        color="transparent"
+        @click="emit('close')"
+      />
+      <TraxButton
+        label="Save"
+        mdi="content-save"
+        @click="() => { emit('change', inputTitle, inputArtist); }"
+      />
+    </section>
+  </dialog>
 </template>
 
 <script setup>
@@ -55,7 +61,7 @@ const DOMOverlayMeta = ref(null);
 const inputTitle = ref(props.title);
 const inputArtist = ref(props.artist);
 
-watch(() => props.active, (value, oldValue) => {
+watch(() => props.active, (value) => {
     if(value) {
         DOMOverlayMeta.value.showModal();
     } else {

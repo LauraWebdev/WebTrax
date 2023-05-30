@@ -1,16 +1,19 @@
 <template>
-    <label
-        class="trax-input"
-        :class="`type-${type}`"
-    >
-        <div class="text">
-            <div class="label">{{ label }}</div>
-            <div class="hint" v-if="hint">{{ hint }}</div>
-        </div>
-        <div class="input">
-            <slot />
-        </div>
-    </label>
+  <label
+    class="trax-input"
+    :class="`type-${type}`"
+  >
+    <div class="text">
+      <div class="label">{{ label }}</div>
+      <div
+        v-if="hint"
+        class="hint"
+      >{{ hint }}</div>
+    </div>
+    <div class="input">
+      <slot />
+    </div>
+  </label>
 </template>
 
 <script setup>

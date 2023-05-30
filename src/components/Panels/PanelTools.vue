@@ -1,77 +1,77 @@
 <template>
-    <section class="panel-tools">
-        <nav>
-            <TraxButton
-                v-if="!isPlaying"
-                mdi="play"
-                label="Play"
-                color="success"
-                @click="playSong"
-            />
-            <TraxButton
-                v-if="isPlaying"
-                mdi="stop"
-                label="Stop"
-                color="danger"
-                @click="stopSong"
-            />
-        </nav>
+  <section class="panel-tools">
+    <nav>
+      <TraxButton
+        v-if="!isPlaying"
+        mdi="play"
+        label="Play"
+        color="success"
+        @click="playSong"
+      />
+      <TraxButton
+        v-if="isPlaying"
+        mdi="stop"
+        label="Stop"
+        color="danger"
+        @click="stopSong"
+      />
+    </nav>
 
-        <nav>
-            <TraxButton
-                mdi="music-note-plus"
-                :color="selectedTool === 'place' ? 'bright' : 'transparent'"
-                @click="selectTool('place')"
-                :disabled="isPlaying"
-            />
-            <TraxButton
-                mdi="music-note-minus"
-                :color="selectedTool === 'remove' ? 'bright' : 'transparent'"
-                @click="selectTool('remove')"
-                :disabled="isPlaying"
-            />
-            <TraxButton
-                mdi="eyedropper"
-                :color="selectedTool === 'picker' ? 'bright' : 'transparent'"
-                @click="selectTool('picker')"
-                :disabled="isPlaying"
-            />
-        </nav>
+    <nav>
+      <TraxButton
+        mdi="music-note-plus"
+        :color="selectedTool === 'place' ? 'bright' : 'transparent'"
+        :disabled="isPlaying"
+        @click="selectTool('place')"
+      />
+      <TraxButton
+        mdi="music-note-minus"
+        :color="selectedTool === 'remove' ? 'bright' : 'transparent'"
+        :disabled="isPlaying"
+        @click="selectTool('remove')"
+      />
+      <TraxButton
+        mdi="eyedropper"
+        :color="selectedTool === 'picker' ? 'bright' : 'transparent'"
+        :disabled="isPlaying"
+        @click="selectTool('picker')"
+      />
+    </nav>
 
-        <nav>
-            <TraxButton
-                :icon="`./trax/images/${selectedCD}.gif`"
-                :label="cdTitle"
-                :sublabel="cdArtist"
-                @click="overlayActiveCDs = true"
-                :disabled="isPlaying"
-            />
-            <TraxButton
-                v-for="i in 9"
-                :mdi="getIcon(i)"
-                :color="selectedSample === i ? 'bright' : 'default'"
-                @click="selectSample(i)"
-                @mouseenter="playSample(i)"
-                @mouseleave="stopSample"
-                :disabled="isPlaying"
-            />
-        </nav>
-    </section>
+    <nav>
+      <TraxButton
+        :icon="`./trax/images/${selectedCD}.gif`"
+        :label="cdTitle"
+        :sublabel="cdArtist"
+        :disabled="isPlaying"
+        @click="overlayActiveCDs = true"
+      />
+      <TraxButton
+        v-for="i in 9"
+        :key="i"
+        :mdi="getIcon(i)"
+        :color="selectedSample === i ? 'bright' : 'default'"
+        :disabled="isPlaying"
+        @click="selectSample(i)"
+        @mouseenter="playSample(i)"
+        @mouseleave="stopSample"
+      />
+    </nav>
+  </section>
 
-    <OverlayCDs
-        :active="overlayActiveCDs"
-        @close="() => { overlayActiveCDs = false; }"
-        @change="(_selectedCD) => { overlayActiveCDs = false; emit('changeCD', _selectedCD) }"
-        :selected-c-d="selectedCD"
-    />
+  <OverlayCDs
+    :active="overlayActiveCDs"
+    :selected-c-d="selectedCD"
+    @close="() => { overlayActiveCDs = false; }"
+    @change="(_selectedCD) => { overlayActiveCDs = false; emit('changeCD', _selectedCD) }"
+  />
 </template>
 
 <script setup>
 import TraxButton from "@/components/TraxButton.vue";
 import {computed, ref} from "vue";
-import trax_database, {getCDArtist, getCDColor, getCDTitle} from "@/trax_database";
+import {getCDArtist, getCDTitle} from "@/trax_database";
 import OverlayCDs from "@/components/Overlays/OverlayCDs.vue";
-import OverlayMeta from "@/components/Overlays/OverlayMeta.vue";
 
 const emit = defineEmits(['playSong', 'stopSong', 'changeSample', 'changeCD', 'changeTool']);
 
@@ -132,9 +132,6 @@ const cdTitle = computed(() => {
 });
 const cdArtist = computed(() => {
     return getCDArtist(props.selectedCD);
-});
-const cdColor = computed(() => {
-    return getCDColor(props.selectedCD);
 });
 
 const getIcon = (_sampleId) => {

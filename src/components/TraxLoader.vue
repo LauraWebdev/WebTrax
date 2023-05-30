@@ -1,9 +1,9 @@
 <template>
-    <div class="loading-circle">
-        <div class="icon">
-            <span class="mdi mdi-loading"></span>
-        </div>
+  <div class="loading-circle">
+    <div class="icon">
+      <span class="mdi mdi-loading" />
     </div>
+  </div>
 </template>
 
 <script setup>

@@ -1,36 +1,35 @@
 <template>
-    <dialog ref="DOMOverlayCDs">
-        <header>Select a CD</header>
-        <main>
-            <TraxButton
-                v-for="cd in trax_database"
-                :key="cd.cd"
-                :icon="`./trax/images/${cd.cd}.gif`"
-                :label="cd.meta.title"
-                :sublabel="cd.meta.artist"
-                @click="inputSelectedCD = cd.cd"
-                :color="inputSelectedCD === cd.cd ? 'bright' : 'default'"
-                align="left"
-            />
-        </main>
-        <section class="actions">
-            <TraxButton
-                label="Close"
-                color="transparent"
-                @click="emit('close')"
-            />
-            <TraxButton
-                label="Select"
-                @click="() => { emit('change', inputSelectedCD); }"
-            />
-        </section>
-    </dialog>
+  <dialog ref="DOMOverlayCDs">
+    <header>Select a CD</header>
+    <main>
+      <TraxButton
+        v-for="cd in trax_database"
+        :key="cd.cd"
+        :icon="`./trax/images/${cd.cd}.gif`"
+        :label="cd.meta.title"
+        :sublabel="cd.meta.artist"
+        :color="inputSelectedCD === cd.cd ? 'bright' : 'default'"
+        align="left"
+        @click="inputSelectedCD = cd.cd"
+      />
+    </main>
+    <section class="actions">
+      <TraxButton
+        label="Close"
+        color="transparent"
+        @click="emit('close')"
+      />
+      <TraxButton
+        label="Select"
+        @click="() => { emit('change', inputSelectedCD); }"
+      />
+    </section>
+  </dialog>
 </template>
 
 <script setup>
 import {ref, watch} from "vue";
 import TraxButton from "@/components/TraxButton.vue";
-import TraxInput from "@/components/TraxInput.vue";
 import trax_database from "../../trax_database";
 
 const emit = defineEmits(['close', 'change']);
@@ -50,7 +49,7 @@ const DOMOverlayCDs = ref(null);
 
 const inputSelectedCD = ref(props.selectedCD);
 
-watch(() => props.active, (value, oldValue) => {
+watch(() => props.active, (value) => {
     if(value) {
         DOMOverlayCDs.value.showModal();
     } else {

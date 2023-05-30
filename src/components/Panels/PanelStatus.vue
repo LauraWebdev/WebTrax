@@ -1,12 +1,21 @@
 <template>
-    <section class="panel-status">
-        <span class="copyright">Created by <a href="https://laura.media" target="_blank">Laura Sofia Heimann</a></span>
+  <section class="panel-status">
+    <span class="copyright">Created by <a
+      href="https://laura.media"
+      target="_blank"
+    >Laura Sofia Heimann</a></span>
 
-        <nav>
-            <a href="https://github.com/LauraWebdev/WebTrax" target="_blank">Github</a>
-            <a href="https://habbo.com" target="_blank">Habbo</a>
-        </nav>
-    </section>
+    <nav>
+      <a
+        href="https://github.com/LauraWebdev/WebTrax"
+        target="_blank"
+      >Github</a>
+      <a
+        href="https://habbo.com"
+        target="_blank"
+      >Habbo</a>
+    </nav>
+  </section>
 </template>
 
 <script setup>

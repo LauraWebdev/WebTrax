@@ -1,11 +1,11 @@
 <template>
-    <section class="panel-loading-samples">
-        <div class="content">
-            <TraxLoader />
-            <h1>Loading Samples ({{ loadingProgress }}/648)</h1>
-            <p>Please wait...</p>
-        </div>
-    </section>
+  <section class="panel-loading-samples">
+    <div class="content">
+      <TraxLoader />
+      <h1>Loading Samples ({{ loadingProgress }}/648)</h1>
+      <p>Please wait...</p>
+    </div>
+  </section>
 </template>
 
 <script setup>

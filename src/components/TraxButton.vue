@@ -1,20 +1,39 @@
 <template>
-    <button
-        @click="emit('click')"
-        @mouseenter="emit('mouseenter')"
-        @mouseleave="emit('mouseleave')"
-        :disabled="disabled"
-        :class="`color-${color} ${mini ? 'mini' : ''}`"
-        :style="`justify-content: ${ align }`"
+  <button
+    :disabled="disabled"
+    :class="`color-${color} ${mini ? 'mini' : ''}`"
+    :style="`justify-content: ${ align }`"
+    @click="emit('click')"
+    @mouseenter="emit('mouseenter')"
+    @mouseleave="emit('mouseleave')"
+  >
+    <span
+      v-if="loading"
+      :class="`loading mdi mdi-loading`"
+    />
+    <span
+      v-if="mdi && !loading"
+      :class="`mdi mdi-${mdi}`"
+    />
+    <div
+      v-if="icon && !loading"
+      class="icon"
+      :style="{ backgroundImage: `url('${icon}')` }"
+    />
+    <div
+      v-if="label || sublabel"
+      class="labels"
     >
-        <span v-if="loading" :class="`loading mdi mdi-loading`"></span>
-        <span v-if="mdi && !loading" :class="`mdi mdi-${mdi}`"></span>
-        <div v-if="icon && !loading" class="icon" :style="{ backgroundImage: `url('${icon}')` }"></div>
-        <div v-if="label || sublabel" class="labels">
-            <span v-if="label" class="label">{{ label }}</span>
-            <span v-if="sublabel" class="sublabel">{{ sublabel }}</span>
-        </div>
-    </button>
+      <span
+        v-if="label"
+        class="label"
+      >{{ label }}</span>
+      <span
+        v-if="sublabel"
+        class="sublabel"
+      >{{ sublabel }}</span>
+    </div>
+  </button>
 </template>
 
 <script setup>

@@ -1,56 +1,56 @@
 <template>
-    <PanelNavigation
-        :track-meta="trackMeta"
-        @render-song="renderSong"
-        @change-meta="changeMeta"
-        @save-song="saveSong"
-        @open-song="openSong"
-        :is-loading-samples="isLoadingSamples"
-    />
+  <PanelNavigation
+    :track-meta="trackMeta"
+    :is-loading-samples="isLoadingSamples"
+    @render-song="renderSong"
+    @change-meta="changeMeta"
+    @save-song="saveSong"
+    @open-song="openSong"
+  />
 
-    <PanelLoadingSamples
-        v-if="isLoadingSamples"
-        :loading-progress="loadingProgress"
-    />
+  <PanelLoadingSamples
+    v-if="isLoadingSamples"
+    :loading-progress="loadingProgress"
+  />
 
-    <PanelTools
-        v-if="!isLoadingSamples"
-        :is-playing="isPlaying"
-        :selected-tool="selectedTool"
-        :selected-c-d="selectedCD"
-        :selected-sample="selectedSample"
-        @play-song="playSong"
-        @stop-song="stopSong"
-        @change-tool="changeTool"
-        @change-c-d="changeCD"
-        @change-sample="changeSample"
-    />
+  <PanelTools
+    v-if="!isLoadingSamples"
+    :is-playing="isPlaying"
+    :selected-tool="selectedTool"
+    :selected-c-d="selectedCD"
+    :selected-sample="selectedSample"
+    @play-song="playSong"
+    @stop-song="stopSong"
+    @change-tool="changeTool"
+    @change-c-d="changeCD"
+    @change-sample="changeSample"
+  />
 
-    <PanelTimeline
-        v-if="!isLoadingSamples"
-        :is-playing="isPlaying"
-        :song-position="songPosition"
-        :track-length="trackLength"
-        :track-nodes="trackNodes"
-        :selected-c-d="selectedCD"
-        :selected-sample="selectedSample"
-        :selected-tool="selectedTool"
-        @add-track="addTrack"
-        @remove-track="removeTrack"
-        @seek-position="seekPosition"
-        @click-cell="clickCell"
-    />
+  <PanelTimeline
+    v-if="!isLoadingSamples"
+    :is-playing="isPlaying"
+    :song-position="songPosition"
+    :track-length="trackLength"
+    :track-nodes="trackNodes"
+    :selected-c-d="selectedCD"
+    :selected-sample="selectedSample"
+    :selected-tool="selectedTool"
+    @add-track="addTrack"
+    @remove-track="removeTrack"
+    @seek-position="seekPosition"
+    @click-cell="clickCell"
+  />
 
-    <PanelStatus
-        v-if="!isLoadingSamples"
-    />
+  <PanelStatus
+    v-if="!isLoadingSamples"
+  />
 
-    <OverlayExportImport
-        :active="overlayActiveImportExport"
-        :data="importExportData"
-        @close="() => { overlayActiveImportExport = false; }"
-        @change="importSong"
-    />
+  <OverlayExportImport
+    :active="overlayActiveImportExport"
+    :data="importExportData"
+    @close="() => { overlayActiveImportExport = false; }"
+    @change="importSong"
+  />
 </template>
 
 <script setup>
@@ -181,7 +181,7 @@ const saveSong = () => {
 
     overlayActiveImportExport.value = true;
 };
-const openSong = (_data) => {
+const openSong = () => {
     importExportData.value = '';
     overlayActiveImportExport.value = true;
 };

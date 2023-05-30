@@ -1,58 +1,57 @@
 <template>
-    <section class="panel-navigation">
-        <div class="brand">
-            <span>WebTrax</span>
-            <span>Web-based Habbo Trax</span>
-        </div>
+  <section class="panel-navigation">
+    <div class="brand">
+      <span>WebTrax</span>
+      <span>Web-based Habbo Trax</span>
+    </div>
 
-        <div class="meta">
-            <span>{{ trackMeta.title }}</span>
-            <span>{{ trackMeta.artist }}</span>
-        </div>
+    <div class="meta">
+      <span>{{ trackMeta.title }}</span>
+      <span>{{ trackMeta.artist }}</span>
+    </div>
 
-        <TraxButton
-            mdi="pencil"
-            color="transparent"
-            @click="() => { overlayActiveTrackMeta = true; }"
-            :disabled="isLoadingSamples"
-        />
-
-        <div class="spacer"></div>
-
-        <nav>
-            <TraxButton
-                mdi="folder-open"
-                @click="emit('openSong')"
-                :disabled="isLoadingSamples"
-            />
-            <TraxButton
-                mdi="content-save"
-                @click="emit('saveSong')"
-                :disabled="isLoadingSamples"
-            />
-            <TraxButton
-                mdi="export-variant"
-                color="primary"
-                @click="emit('renderSong')"
-                :disabled="isLoadingSamples"
-            />
-        </nav>
-    </section>
-
-    <OverlayMeta
-        :active="overlayActiveTrackMeta"
-        @close="() => { overlayActiveTrackMeta = false; }"
-        @change="(_title, _artist) => { overlayActiveTrackMeta = false; emit('changeMeta', _title, _artist) }"
-        :title="trackMeta.title"
-        :artist="trackMeta.artist"
+    <TraxButton
+      mdi="pencil"
+      color="transparent"
+      :disabled="isLoadingSamples"
+      @click="() => { overlayActiveTrackMeta = true; }"
     />
+
+    <div class="spacer" />
+
+    <nav>
+      <TraxButton
+        mdi="folder-open"
+        :disabled="isLoadingSamples"
+        @click="emit('openSong')"
+      />
+      <TraxButton
+        mdi="content-save"
+        :disabled="isLoadingSamples"
+        @click="emit('saveSong')"
+      />
+      <TraxButton
+        mdi="export-variant"
+        color="primary"
+        :disabled="isLoadingSamples"
+        @click="emit('renderSong')"
+      />
+    </nav>
+  </section>
+
+  <OverlayMeta
+    :active="overlayActiveTrackMeta"
+    :title="trackMeta.title"
+    :artist="trackMeta.artist"
+    @close="() => { overlayActiveTrackMeta = false; }"
+    @change="(_title, _artist) => { overlayActiveTrackMeta = false; emit('changeMeta', _title, _artist) }"
+  />
 </template>
 
 <script setup>
 import TraxButton from "@/components/TraxButton.vue";
 import OverlayMeta from "@/components/Overlays/OverlayMeta.vue";
 import {ref} from "vue";
-import OverlayExportImport from "@/components/Overlays/OverlayExportImport.vue";
 
 const emit = defineEmits(['openSong', 'saveSong', 'renderSong', 'changeMeta']);
 

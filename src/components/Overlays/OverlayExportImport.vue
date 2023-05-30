@@ -1,26 +1,29 @@
 <template>
-    <dialog ref="DOMOverlayImportExport">
-        <header>Export & Import</header>
-        <main>
-            <TraxInput
-                label="Data"
-            >
-                <textarea v-model="inputData" rows="10"></textarea>
-            </TraxInput>
-        </main>
-        <section class="actions">
-            <TraxButton
-                label="Close"
-                color="transparent"
-                @click="emit('close')"
-            />
-            <TraxButton
-                label="Import"
-                mdi="content-save"
-                @click="() => { emit('change', inputData); }"
-            />
-        </section>
-    </dialog>
+  <dialog ref="DOMOverlayImportExport">
+    <header>Export & Import</header>
+    <main>
+      <TraxInput
+        label="Data"
+      >
+        <textarea
+          v-model="inputData"
+          rows="10"
+        />
+      </TraxInput>
+    </main>
+    <section class="actions">
+      <TraxButton
+        label="Close"
+        color="transparent"
+        @click="emit('close')"
+      />
+      <TraxButton
+        label="Import"
+        mdi="content-save"
+        @click="() => { emit('change', inputData); }"
+      />
+    </section>
+  </dialog>
 </template>
 
 <script setup>
@@ -45,7 +48,7 @@ const DOMOverlayImportExport = ref(null);
 
 const inputData = ref(props.data);
 
-watch(() => props.active, (value, oldValue) => {
+watch(() => props.active, (value) => {
     if(value) {
         DOMOverlayImportExport.value.showModal();
     } else {
