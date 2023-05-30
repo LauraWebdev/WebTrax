@@ -5,6 +5,7 @@
         @mouseleave="emit('mouseleave')"
         :disabled="disabled"
         :class="`color-${color} ${mini ? 'mini' : ''}`"
+        :style="`justify-content: ${ align }`"
     >
         <span v-if="loading" :class="`loading mdi mdi-loading`"></span>
         <span v-if="mdi && !loading" :class="`mdi mdi-${mdi}`"></span>
@@ -51,6 +52,10 @@ defineProps({
     color: {
         type: String,
         default: 'default',
+    },
+    align: {
+        type: String,
+        default: 'inherit',
     }
 });
 </script>
@@ -113,7 +118,7 @@ button {
         & .sublabel {
             font-family: 'Work Sans Variable', sans-serif;
             font-size: 0.75em;
-            color: rgba(255,255,255,0.4);
+            opacity: 0.4;
         }
     }
 

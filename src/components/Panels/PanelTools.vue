@@ -43,7 +43,7 @@
                 :icon="`/trax/images/${selectedCD}.gif`"
                 :label="cdTitle"
                 :sublabel="cdArtist"
-                @click="selectCD"
+                @click="overlayActiveCDs = true"
                 :disabled="isPlaying"
             />
             <TraxButton
@@ -57,12 +57,21 @@
             />
         </nav>
     </section>
+
+    <OverlayCDs
+        :active="overlayActiveCDs"
+        @close="() => { overlayActiveCDs = false; }"
+        @change="(_selectedCD) => { overlayActiveCDs = false; emit('changeCD', _selectedCD) }"
+        :selected-c-d="selectedCD"
+    />
 </template>
 
 <script setup>
 import TraxButton from "@/components/TraxButton.vue";
 import {computed, ref} from "vue";
 import trax_database, {getCDArtist, getCDColor, getCDTitle} from "@/trax_database";
+import OverlayCDs from "@/components/Overlays/OverlayCDs.vue";
+import OverlayMeta from "@/components/Overlays/OverlayMeta.vue";
 
 const emit = defineEmits(['playSong', 'stopSong', 'changeSample', 'changeCD', 'changeTool']);
 
@@ -86,14 +95,10 @@ const props = defineProps({
 });
 
 const previewAudio = ref(null);
+const overlayActiveCDs = ref(false);
 
 const selectTool = (_tool) => {
     emit('changeTool', _tool);
-};
-const selectCD = () => {
-    // TODO: Open Overlay
-    let newCD = Math.floor(Math.random() * 72) + 1;
-    emit('changeCD', newCD);
 };
 const selectSample = (_sample) => {
     emit('changeSample', _sample);
