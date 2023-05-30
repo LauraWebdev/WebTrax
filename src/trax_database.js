@@ -1,11 +1,8 @@
-// TODO: Save "getX" functions here
-// TODO: Add Colors from Covers
-
-export default [
+const trax_database = [
     {
         "cd": 1,
         "meta": {
-            "color": "#ffffff",
+            "color": "#CACACA",
             "title": "DJ Fuse’s Duck Funk",
             "artist": "Sulake",
         },
@@ -51,7 +48,7 @@ export default [
     {
         "cd": 2,
         "meta": {
-            "color": "#ffffff",
+            "color": "#CACACA",
             "title": "DJ Fuse’s Habbo Theme",
             "artist": "Sulake",
         },
@@ -97,7 +94,7 @@ export default [
     {
         "cd": 3,
         "meta": {
-            "color": "#ffffff",
+            "color": "#CACACA",
             "title": "SnowStorm Theme",
             "artist": "Sulake",
         },
@@ -143,7 +140,7 @@ export default [
     {
         "cd": 4,
         "meta": {
-            "color": "#ffffff",
+            "color": "#CACACA",
             "title": "Sunset Adverture(s)",
             "artist": "Sulake",
         },
@@ -189,7 +186,7 @@ export default [
     {
         "cd": 5,
         "meta": {
-            "color": "#ffffff",
+            "color": "#868686",
             "title": "Dark Skies",
             "artist": "Sulake",
         },
@@ -235,7 +232,7 @@ export default [
     {
         "cd": 6,
         "meta": {
-            "color": "#ffffff",
+            "color": "#CACACA",
             "title": "Ambience(s)",
             "artist": "Sulake",
         },
@@ -281,7 +278,7 @@ export default [
     {
         "cd": 7,
         "meta": {
-            "color": "#ffffff",
+            "color": "#CACACA",
             "title": "Furni Sounds I",
             "artist": "Sulake",
         },
@@ -327,7 +324,7 @@ export default [
     {
         "cd": 8,
         "meta": {
-            "color": "#ffffff",
+            "color": "#CACACA",
             "title": "Electronica",
             "artist": "Sulake",
         },
@@ -373,7 +370,7 @@ export default [
     {
         "cd": 9,
         "meta": {
-            "color": "#ffffff",
+            "color": "#CACACA",
             "title": "Mysto Magica",
             "artist": "Sulake",
         },
@@ -419,7 +416,7 @@ export default [
     {
         "cd": 10,
         "meta": {
-            "color": "#ffffff",
+            "color": "#CACACA",
             "title": "Boy Band Sensation",
             "artist": "Sulake",
         },
@@ -465,7 +462,7 @@ export default [
     {
         "cd": 11,
         "meta": {
-            "color": "#ffffff",
+            "color": "#CACACA",
             "title": "Spicey Donna",
             "artist": "Sulake",
         },
@@ -511,7 +508,7 @@ export default [
     {
         "cd": 12,
         "meta": {
-            "color": "#ffffff",
+            "color": "#42A842",
             "title": "Abe Normal",
             "artist": "Sulake",
         },
@@ -557,7 +554,7 @@ export default [
     {
         "cd": 13,
         "meta": {
-            "color": "#ffffff",
+            "color": "#D7D740",
             "title": "Cafe Muzzakh",
             "artist": "Sulake",
         },
@@ -603,7 +600,7 @@ export default [
     {
         "cd": 14,
         "meta": {
-            "color": "#ffffff",
+            "color": "#4275A8",
             "title": "Cameron’s Ex",
             "artist": "Sulake",
         },
@@ -649,7 +646,7 @@ export default [
     {
         "cd": 15,
         "meta": {
-            "color": "#ffffff",
+            "color": "#DBA80F",
             "title": "El Generico",
             "artist": "Sulake",
         },
@@ -695,7 +692,7 @@ export default [
     {
         "cd": 16,
         "meta": {
-            "color": "#ffffff",
+            "color": "#DB7575",
             "title": "Ferry Nultado",
             "artist": "Sulake",
         },
@@ -741,7 +738,7 @@ export default [
     {
         "cd": 17,
         "meta": {
-            "color": "#ffffff",
+            "color": "#DBA80F",
             "title": "Jive Sideburns",
             "artist": "Sulake",
         },
@@ -787,7 +784,7 @@ export default [
     {
         "cd": 18,
         "meta": {
-            "color": "#ffffff",
+            "color": "#CACACA",
             "title": "Little Tanga Beach",
             "artist": "Sulake",
         },
@@ -833,7 +830,7 @@ export default [
     {
         "cd": 19,
         "meta": {
-            "color": "#ffffff",
+            "color": "#CACACA",
             "title": "MnM",
             "artist": "Sulake",
         },
@@ -879,7 +876,7 @@ export default [
     {
         "cd": 20,
         "meta": {
-            "color": "#ffffff",
+            "color": "#CACACA",
             "title": "Monkey Paradise",
             "artist": "Sulake",
         },
@@ -925,7 +922,7 @@ export default [
     {
         "cd": 21,
         "meta": {
-            "color": "#ffffff",
+            "color": "#757575",
             "title": "Snotty Day",
             "artist": "Sulake",
         },
@@ -971,7 +968,7 @@ export default [
     {
         "cd": 22,
         "meta": {
-            "color": "#ffffff",
+            "color": "#CACACA",
             "title": "A Day in the Park",
             "artist": "Sulake",
         },
@@ -1017,7 +1014,7 @@ export default [
     {
         "cd": 23,
         "meta": {
-            "color": "#ffffff",
+            "color": "#4275A8",
             "title": "Nature Nightlife",
             "artist": "Sulake",
         },
@@ -1063,7 +1060,7 @@ export default [
     {
         "cd": 24,
         "meta": {
-            "color": "#ffffff",
+            "color": "#CACACA",
             "title": "Compu FX",
             "artist": "Sulake",
         },
@@ -1109,7 +1106,7 @@ export default [
     {
         "cd": 25,
         "meta": {
-            "color": "#ffffff",
+            "color": "#DB7575",
             "title": "Party Pack",
             "artist": "Sulake",
         },
@@ -1155,7 +1152,7 @@ export default [
     {
         "cd": 26,
         "meta": {
-            "color": "#ffffff",
+            "color": "#DB7575",
             "title": "Bhangra Mangra",
             "artist": "Sulake",
         },
@@ -1201,7 +1198,7 @@ export default [
     {
         "cd": 27,
         "meta": {
-            "color": "#ffffff",
+            "color": "#A8750F",
             "title": "Rasta Santa’s Pack",
             "artist": "Sulake",
         },
@@ -1247,7 +1244,7 @@ export default [
     {
         "cd": 28,
         "meta": {
-            "color": "#ffffff",
+            "color": "#757575",
             "title": "Moshy Metal",
             "artist": "Sulake",
         },
@@ -1293,7 +1290,7 @@ export default [
     {
         "cd": 29,
         "meta": {
-            "color": "#ffffff",
+            "color": "#757575",
             "title": "Dancefloor Burners",
             "artist": "Sulake",
         },
@@ -1339,7 +1336,7 @@ export default [
     {
         "cd": 30,
         "meta": {
-            "color": "#ffffff",
+            "color": "#DB7575",
             "title": "Double Peaks",
             "artist": "Sulake",
         },
@@ -1385,7 +1382,7 @@ export default [
     {
         "cd": 31,
         "meta": {
-            "color": "#ffffff",
+            "color": "#4275A8",
             "title": "House Loops",
             "artist": "Sulake",
         },
@@ -1431,7 +1428,7 @@ export default [
     {
         "cd": 32,
         "meta": {
-            "color": "#ffffff",
+            "color": "#CACACA",
             "title": "Pianissimo",
             "artist": "Sulake",
         },
@@ -1477,7 +1474,7 @@ export default [
     {
         "cd": 33,
         "meta": {
-            "color": "#ffffff",
+            "color": "#757575",
             "title": "Yngvie Van Halen",
             "artist": "Sulake",
         },
@@ -1523,7 +1520,7 @@ export default [
     {
         "cd": 34,
         "meta": {
-            "color": "#ffffff",
+            "color": "#757575",
             "title": "Rockin’ Riffs",
             "artist": "Sulake",
         },
@@ -1569,7 +1566,7 @@ export default [
     {
         "cd": 35,
         "meta": {
-            "color": "#ffffff",
+            "color": "#75A842",
             "title": "Supa Funk",
             "artist": "Sulake",
         },
@@ -1615,7 +1612,7 @@ export default [
     {
         "cd": 36,
         "meta": {
-            "color": "#ffffff",
+            "color": "#DB7575",
             "title": "Bossa Nueva",
             "artist": "Sulake",
         },
@@ -1661,7 +1658,7 @@ export default [
     {
         "cd": 37,
         "meta": {
-            "color": "#ffffff",
+            "color": "#CACACA",
             "title": "Habbowood",
             "artist": "Sulake",
         },
@@ -1707,7 +1704,7 @@ export default [
     {
         "cd": 38,
         "meta": {
-            "color": "#ffffff",
+            "color": "#757575",
             "title": "Highway to Habbo",
             "artist": "Sulake",
         },
@@ -1753,7 +1750,7 @@ export default [
     {
         "cd": 39,
         "meta": {
-            "color": "#ffffff",
+            "color": "#757575",
             "title": "Pixels on the Water",
             "artist": "Sulake",
         },
@@ -1799,7 +1796,7 @@ export default [
     {
         "cd": 40,
         "meta": {
-            "color": "#ffffff",
+            "color": "#757575",
             "title": "Iron Maid",
             "artist": "Sulake",
         },
@@ -1845,7 +1842,7 @@ export default [
     {
         "cd": 41,
         "meta": {
-            "color": "#ffffff",
+            "color": "#757575",
             "title": "Sympathy for the Coder",
             "artist": "Sulake",
         },
@@ -1891,7 +1888,7 @@ export default [
     {
         "cd": 42,
         "meta": {
-            "color": "#ffffff",
+            "color": "#757575",
             "title": "Snouthill Horror",
             "artist": "Sulake",
         },
@@ -1937,7 +1934,7 @@ export default [
     {
         "cd": 43,
         "meta": {
-            "color": "#ffffff",
+            "color": "#0F4275",
             "title": "Silence of the Moderators",
             "artist": "Sulake",
         },
@@ -1983,7 +1980,7 @@ export default [
     {
         "cd": 44,
         "meta": {
-            "color": "#ffffff",
+            "color": "#4275A8",
             "title": "Ghost Story",
             "artist": "Sulake",
         },
@@ -2029,7 +2026,7 @@ export default [
     {
         "cd": 45,
         "meta": {
-            "color": "#ffffff",
+            "color": "#CACACA",
             "title": "Berlin Connection",
             "artist": "Sulake",
         },
@@ -2075,7 +2072,7 @@ export default [
     {
         "cd": 46,
         "meta": {
-            "color": "#ffffff",
+            "color": "#4275DB",
             "title": "Club Sounds III",
             "artist": "Sulake",
         },
@@ -2121,7 +2118,7 @@ export default [
     {
         "cd": 47,
         "meta": {
-            "color": "#ffffff",
+            "color": "#CACACA",
             "title": "Loco Electro",
             "artist": "Sulake",
         },
@@ -2167,7 +2164,7 @@ export default [
     {
         "cd": 48,
         "meta": {
-            "color": "#ffffff",
+            "color": "#A8750F",
             "title": "Jackin’ Chicago",
             "artist": "Sulake",
         },
@@ -2213,7 +2210,7 @@ export default [
     {
         "cd": 49,
         "meta": {
-            "color": "#ffffff",
+            "color": "#75A842",
             "title": "Maximum Minimal",
             "artist": "Sulake",
         },
@@ -2259,7 +2256,7 @@ export default [
     {
         "cd": 50,
         "meta": {
-            "color": "#ffffff",
+            "color": "#A8750F",
             "title": "Nu Skool Breakz",
             "artist": "Sulake",
         },
@@ -2305,7 +2302,7 @@ export default [
     {
         "cd": 51,
         "meta": {
-            "color": "#ffffff",
+            "color": "#CACACA",
             "title": "NYC Beat",
             "artist": "Sulake",
         },
@@ -2351,7 +2348,7 @@ export default [
     {
         "cd": 52,
         "meta": {
-            "color": "#ffffff",
+            "color": "#757575",
             "title": "State of Trancehouse",
             "artist": "Sulake",
         },
@@ -2397,7 +2394,7 @@ export default [
     {
         "cd": 53,
         "meta": {
-            "color": "#ffffff",
+            "color": "#A8FFFF",
             "title": "Jingle Beats",
             "artist": "Sulake",
         },
@@ -2443,7 +2440,7 @@ export default [
     {
         "cd": 54,
         "meta": {
-            "color": "#ffffff",
+            "color": "#DB0F0F",
             "title": "Rudolph’s Loops",
             "artist": "Sulake",
         },
@@ -2489,7 +2486,7 @@ export default [
     {
         "cd": 55,
         "meta": {
-            "color": "#ffffff",
+            "color": "#75420F",
             "title": "RnB Grooves 1",
             "artist": "Sulake",
         },
@@ -2535,7 +2532,7 @@ export default [
     {
         "cd": 56,
         "meta": {
-            "color": "#ffffff",
+            "color": "#75420F",
             "title": "RnB Grooves 2",
             "artist": "Sulake",
         },
@@ -2581,7 +2578,7 @@ export default [
     {
         "cd": 57,
         "meta": {
-            "color": "#ffffff",
+            "color": "#75420F",
             "title": "RnB Grooves 3",
             "artist": "Sulake",
         },
@@ -2627,7 +2624,7 @@ export default [
     {
         "cd": 58,
         "meta": {
-            "color": "#ffffff",
+            "color": "#75420F",
             "title": "RnB Grooves 4",
             "artist": "Sulake",
         },
@@ -2673,7 +2670,7 @@ export default [
     {
         "cd": 59,
         "meta": {
-            "color": "#ffffff",
+            "color": "#75420F",
             "title": "RnB Grooves 5",
             "artist": "Sulake",
         },
@@ -2719,7 +2716,7 @@ export default [
     {
         "cd": 60,
         "meta": {
-            "color": "#ffffff",
+            "color": "#DB7575",
             "title": "Valentine 1",
             "artist": "Sulake",
         },
@@ -2765,7 +2762,7 @@ export default [
     {
         "cd": 61,
         "meta": {
-            "color": "#ffffff",
+            "color": "#DB7575",
             "title": "Valentine 2",
             "artist": "Sulake",
         },
@@ -2811,7 +2808,7 @@ export default [
     {
         "cd": 62,
         "meta": {
-            "color": "#ffffff",
+            "color": "#DBA875",
             "title": "Alhambra Trax 1",
             "artist": "Sulake",
         },
@@ -2857,7 +2854,7 @@ export default [
     {
         "cd": 63,
         "meta": {
-            "color": "#ffffff",
+            "color": "#DBA875",
             "title": "Alhambra Trax 2",
             "artist": "Sulake",
         },
@@ -2903,7 +2900,7 @@ export default [
     {
         "cd": 64,
         "meta": {
-            "color": "#ffffff",
+            "color": "#DBA875",
             "title": "Alhambra Trax 3",
             "artist": "Sulake",
         },
@@ -2949,7 +2946,7 @@ export default [
     {
         "cd": 65,
         "meta": {
-            "color": "#ffffff",
+            "color": "#DBA875",
             "title": "Tiki Vol. 1",
             "artist": "Sulake",
         },
@@ -2995,7 +2992,7 @@ export default [
     {
         "cd": 66,
         "meta": {
-            "color": "#ffffff",
+            "color": "#DBA875",
             "title": "Tiki Vol. 2",
             "artist": "Sulake",
         },
@@ -3041,7 +3038,7 @@ export default [
     {
         "cd": 67,
         "meta": {
-            "color": "#ffffff",
+            "color": "#DBA875",
             "title": "Tiki Vol. 3",
             "artist": "Sulake",
         },
@@ -3087,7 +3084,7 @@ export default [
     {
         "cd": 68,
         "meta": {
-            "color": "#ffffff",
+            "color": "#A8FF42",
             "title": "EC 1",
             "artist": "Sulake",
         },
@@ -3133,7 +3130,7 @@ export default [
     {
         "cd": 69,
         "meta": {
-            "color": "#ffffff",
+            "color": "#A8FF42",
             "title": "EC 2",
             "artist": "Sulake",
         },
@@ -3179,7 +3176,7 @@ export default [
     {
         "cd": 70,
         "meta": {
-            "color": "#ffffff",
+            "color": "#A8FF42",
             "title": "EC 3",
             "artist": "Sulake",
         },
@@ -3225,7 +3222,7 @@ export default [
     {
         "cd": 71,
         "meta": {
-            "color": "#ffffff",
+            "color": "#CDF9FF",
             "title": "Icy Trax",
             "artist": "Sulake",
         },
@@ -3271,7 +3268,7 @@ export default [
     {
         "cd": 72,
         "meta": {
-            "color": "#ffffff",
+            "color": "#B89875",
             "title": "Country sounds",
             "artist": "Sulake",
         },
@@ -3315,3 +3312,16 @@ export default [
         ]
     }
 ];
+
+export const getCDTitle = (_cd) => {
+    return trax_database.find(x => x.cd === _cd).meta.title ?? 'Unknown CD title';
+};
+
+export const getCDArtist = (_cd) => {
+    return trax_database.find(x => x.cd === _cd).meta.artist ?? 'Sulake';
+};
+export const getCDColor = (_cd) => {
+    return trax_database.find(x => x.cd === _cd).meta.color ?? '#000000';
+};
+
+export default trax_database;

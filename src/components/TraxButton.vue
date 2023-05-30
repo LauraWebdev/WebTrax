@@ -4,7 +4,7 @@
         @mouseenter="emit('mouseenter')"
         @mouseleave="emit('mouseleave')"
         :disabled="disabled"
-        :class="`color-${color}`"
+        :class="`color-${color} ${mini ? 'mini' : ''}`"
     >
         <span v-if="loading" :class="`loading mdi mdi-loading`"></span>
         <span v-if="mdi && !loading" :class="`mdi mdi-${mdi}`"></span>
@@ -26,6 +26,10 @@ defineProps({
     },
     sublabel: {
         type: [String, Boolean],
+        default: false,
+    },
+    mini: {
+        type: Boolean,
         default: false,
     },
     loading: {
@@ -66,6 +70,17 @@ button {
     gap: 10px;
     transition: 0.15s ease-in-out all;
 
+    &.mini {
+        height: 28px;
+        padding: 0 5px;
+        gap: 6px;
+
+        & .mdi {
+            width: 18px;
+            height: 18px;
+            font-size: 16px;
+        }
+    }
     & .mdi {
         width: 24px;
         height: 24px;

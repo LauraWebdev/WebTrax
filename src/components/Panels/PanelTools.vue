@@ -30,6 +30,12 @@
                 @click="selectTool('remove')"
                 :disabled="isPlaying"
             />
+            <TraxButton
+                mdi="eyedropper"
+                :color="selectedTool === 'picker' ? 'bright' : 'transparent'"
+                @click="selectTool('picker')"
+                :disabled="isPlaying"
+            />
         </nav>
 
         <nav>
@@ -56,7 +62,7 @@
 <script setup>
 import TraxButton from "@/components/TraxButton.vue";
 import {computed, ref} from "vue";
-import trax_database from "@/trax_database";
+import trax_database, {getCDArtist, getCDColor, getCDTitle} from "@/trax_database";
 
 const emit = defineEmits(['playSong', 'stopSong', 'changeSample', 'changeCD', 'changeTool']);
 
@@ -117,13 +123,13 @@ const stopSong = () => {
 };
 
 const cdTitle = computed(() => {
-    return trax_database.find(x => x.cd === props.selectedCD)?.meta.title ?? 'Unknown CD title';
+    return getCDTitle(props.selectedCD);
 });
 const cdArtist = computed(() => {
-    return trax_database.find(x => x.cd === props.selectedCD)?.meta.artist ?? 'Sulake';
+    return getCDArtist(props.selectedCD);
 });
 const cdColor = computed(() => {
-    return trax_database.find(x => x.cd === props.selectedCD)?.meta.color ?? '#000000';
+    return getCDColor(props.selectedCD);
 });
 </script>
 

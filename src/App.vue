@@ -4,7 +4,13 @@
         @render-song="renderSong"
     />
 
+    <PanelLoadingSamples
+        v-if="isLoadingSamples"
+        :loading-progress="loadingProgress"
+    />
+
     <PanelTools
+        v-if="!isLoadingSamples"
         :is-playing="isPlaying"
         :selected-tool="selectedTool"
         :selected-c-d="selectedCD"
@@ -17,6 +23,7 @@
     />
 
     <PanelTimeline
+        v-if="!isLoadingSamples"
         :is-playing="isPlaying"
         :song-position="songPosition"
         :track-length="trackLength"
@@ -25,11 +32,13 @@
         :selected-sample="selectedSample"
         :selected-tool="selectedTool"
         @add-track="addTrack"
+        @remove-track="removeTrack"
         @seek-position="seekPosition"
         @click-cell="clickCell"
     />
 
     <PanelStatus
+        v-if="!isLoadingSamples"
     />
 </template>
 
@@ -41,21 +50,23 @@ import {onMounted, ref} from "vue";
 import PanelTimeline from "@/components/Panels/PanelTimeline.vue";
 import toWav from 'audiobuffer-to-wav';
 import trax_database from "@/trax_database";
+import PanelLoadingSamples from "@/components/Panels/PanelLoadingSamples.vue";
 
 const trackMeta = ref({ title: 'Untitled Trax Song', artist: 'Unknown Artist'});
 const trackLength = ref(20);
-const trackNodes = ref([[{pos: 3, sample: 1, cd: 3}], [], [{pos: 3, sample: 2, cd: 3}, {pos: 5, sample: 2, cd: 3}], []]);
+const trackNodes = ref([[], [], [], []]);
 
 const selectedTool = ref('place');
 const selectedCD = ref(3);
 const selectedSample = ref(1);
 
-const isPlaying = ref(false);
-const songPlayPosition = ref(0);
-const songPosition = ref(0);
 const isLoadingSamples = ref(false);
+const loadingProgress = ref(0);
 const sampleBuffers = ref({});
 const audioContext = ref(null);
+const songPlayPosition = ref(0);
+const songPosition = ref(0);
+const isPlaying = ref(false);
 const sourceNodes = ref([]);
 const positionInterval = ref(null);
 
@@ -64,9 +75,12 @@ onMounted(async () => {
         if(event.shiftKey) {
             selectedTool.value = 'remove';
         }
+        if(event.ctrlKey) {
+            selectedTool.value = 'picker';
+        }
     });
     document.addEventListener('keyup', (event) => {
-        if(!event.shiftKey) {
+        if(!event.shiftKey && !event.ctrlKey) {
             selectedTool.value = 'place';
         }
     });
@@ -80,7 +94,7 @@ onMounted(async () => {
         for (const sample of cd.samples) {
             let url = `/trax/audio/${cd.cd}_${sample.sample}.mp3`;
             sampleBuffers.value[url] = await loadAudioAsBuffer(url);
-            console.log(url);
+            loadingProgress.value++;
         }
     }
 
@@ -94,8 +108,6 @@ const loadAudioAsBuffer = async (url) => {
     return await audioContext.value.decodeAudioData(arrayBuffer);
 }
 const createSourceNode = (_audioContext, _audioBuffer, _position, _length) => {
-    console.log("[App] Creating Source Node");
-
     const sourceNode = _audioContext.createBufferSource();
     sourceNode.buffer = _audioBuffer;
     sourceNode.start(_audioContext.currentTime + _position);
@@ -117,7 +129,7 @@ const playSong = () => {
     isPlaying.value = true;
 
     audioContext.value = new AudioContext();
-    songPlayPosition.value = songPosition.value;
+    songPlayPosition.value = songPosition.value - 0.1;
 
     console.log("[App] Playing");
 
@@ -129,13 +141,13 @@ const playSong = () => {
         if(songPosition.value > trackLength.value) {
             stopSong();
         }
-    }, 100);
+    }, 50);
 };
 const stopSong = () => {
     isPlaying.value = false;
 
     clearInterval(positionInterval.value);
-    songPosition.value = songPlayPosition.value;
+    songPosition.value = songPlayPosition.value + 0.1;
 
     sourceNodes.value.forEach(sourceNode => { sourceNode.stop(); sourceNode.disconnect(); });
     sourceNodes.value = [];
@@ -143,6 +155,10 @@ const stopSong = () => {
 
 const addTrack = () => {
     trackNodes.value.push([]);
+};
+
+const removeTrack = (_index) => {
+    trackNodes.value.splice(_index, 1);
 };
 
 const seekPosition = (_newPos) => {
@@ -158,6 +174,9 @@ const clickCell = (_track, _cell) => {
         case 'remove':
             removeNode(_track, _cell);
             break;
+        case 'picker':
+            pickNode(_track, _cell);
+            break;
     }
 };
 
@@ -167,6 +186,15 @@ const removeNode = (_track, _cell) => {
 
     if(existingItem !== -1) {
         track.splice(existingItem, 1);
+    }
+};
+const pickNode = (_track, _cell) => {
+    let track = trackNodes.value[_track];
+    let existingItem = track.find(x => x.pos === _cell - 1);
+
+    if(existingItem) {
+        selectedCD.value = existingItem.cd;
+        selectedSample.value = existingItem.sample;
     }
 };
 const addNode = (_track, _cell) => {
@@ -208,7 +236,10 @@ const addSourceNodesToAudioContext = (_audioContext) => {
     trackNodes.value.forEach((track) => {
         track.forEach(sample => {
             let url = `/trax/audio/${sample.cd}_${sample.sample}.mp3`;
-            sourceNodes.value.push(createSourceNode(_audioContext, sampleBuffers.value[url], sample.pos - songPlayPosition.value, getSampleLength(sample.cd, sample.sample)));
+            let offset = sample.pos - songPlayPosition.value;
+            if(offset > 0) {
+                sourceNodes.value.push(createSourceNode(_audioContext, sampleBuffers.value[url], offset, getSampleLength(sample.cd, sample.sample)));
+            }
         });
     });
 

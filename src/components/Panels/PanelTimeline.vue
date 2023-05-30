@@ -23,7 +23,16 @@
                 class="track"
             >
                 <div class="controls">
-                    Track #{{ trackI }}
+                    <span>Track #{{ trackI }}</span>
+                    <div>
+                        <TraxButton
+                            v-if="trackI > 0"
+                            mdi="trash-can"
+                            color="danger"
+                            mini
+                            @click="emit('removeTrack', trackI)"
+                        />
+                    </div>
                 </div>
                 <div class="nodes">
                     <span
@@ -39,13 +48,13 @@
                             <span
                                 v-if="node"
                                 class="node"
-                                :style="`width: ${getNodeLength(node.cd, node.sample) * 25 + (getNodeLength(node.cd, node.sample) - 1) * 15}px;`"
+                                :style="`width: ${getNodeLength(node.cd, node.sample) * 25 + (getNodeLength(node.cd, node.sample) - 1) * 15}px; background: ${ getCDColor(node.cd) };`"
                             >{{ node.sample }}</span>
                         </template>
                         <span
                             class="node-ghost"
                             v-if="activeTrack === trackI && activeCell === i2 && selectedTool === 'place' && !isPlaying"
-                            :style="`width: ${getNodeLength(selectedCD, selectedSample) * 25 + (getNodeLength(selectedCD, selectedSample) - 1) * 15}px;`"
+                            :style="`width: ${getNodeLength(selectedCD, selectedSample) * 25 + (getNodeLength(selectedCD, selectedSample) - 1) * 15}px; opacity: 0.3; background: ${ getCDColor(selectedCD) };`"
                         ></span>
                     </span>
                 </div>
@@ -66,7 +75,7 @@
 <script setup>
 import TraxButton from "@/components/TraxButton.vue";
 import {onMounted, ref} from "vue";
-import trax_database from "@/trax_database";
+import trax_database, {getCDColor} from "@/trax_database";
 
 const emit = defineEmits(['addTrack', 'removeTrack', 'seekPosition', 'clickCell']);
 
@@ -210,9 +219,10 @@ const getNodeLength =(_cd, _sample) => {
 
             & .controls {
                 border-right: 1px solid rgba(255,255,255,0.14);
-                display: flex;
+                display: grid;
+                grid-template-columns: 1fr auto;
                 align-items: center;
-                justify-content: center;
+                padding: 0 10px;
                 font-size: 0.75rem;
             }
             & .nodes {
