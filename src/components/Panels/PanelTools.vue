@@ -18,25 +18,17 @@
         </nav>
 
         <nav>
-            <!-- <TraxButton
-                mdi="cursor-default"
-                :color="selectedTool === 'cursor' ? 'bright' : 'transparent'"
-                @click="selectTool('cursor')"
-            /> -->
             <TraxButton
                 mdi="music-note-plus"
                 :color="selectedTool === 'place' ? 'bright' : 'transparent'"
                 @click="selectTool('place')"
+                :disabled="isPlaying"
             />
-            <!-- <TraxButton
-                mdi="cursor-move"
-                :color="selectedTool === 'move' ? 'bright' : 'transparent'"
-                @click="selectTool('move')"
-            /> -->
             <TraxButton
                 mdi="music-note-minus"
                 :color="selectedTool === 'remove' ? 'bright' : 'transparent'"
                 @click="selectTool('remove')"
+                :disabled="isPlaying"
             />
         </nav>
 
@@ -46,6 +38,7 @@
                 :label="cdTitle"
                 :sublabel="cdArtist"
                 @click="selectCD"
+                :disabled="isPlaying"
             />
             <TraxButton
                 v-for="i in 9"
@@ -54,6 +47,7 @@
                 @click="selectSample(i)"
                 @mouseenter="playSample(i)"
                 @mouseleave="stopSample"
+                :disabled="isPlaying"
             />
         </nav>
     </section>

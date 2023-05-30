@@ -3,7 +3,7 @@
         <div class="playhead"
              :style="`left: ${150 + songPosition * 40}px`"
         >
-            <div class="dragarea" ref="DOMPlayhead"></div>
+            <div v-show="!isPlaying" class="dragarea" ref="DOMPlayhead"></div>
             <div class="knob"
                 :class="{'active' : isDragging}"
             ></div>
@@ -31,7 +31,7 @@
                         class="cell"
                         @mouseenter="cellEnter(trackI, i2)"
                         @mouseout="cellOut(trackI, i2)"
-                        @click="emit('clickCell', trackI, i2)"
+                        @click="isPlaying ? false : emit('clickCell', trackI, i2)"
                     >
                         <template
                             v-for="node in [nodes.find(x => x.pos === i2 - 1)]"
@@ -44,7 +44,7 @@
                         </template>
                         <span
                             class="node-ghost"
-                            v-if="activeTrack === trackI && activeCell === i2 && selectedTool === 'place'"
+                            v-if="activeTrack === trackI && activeCell === i2 && selectedTool === 'place' && !isPlaying"
                             :style="`width: ${getNodeLength(selectedCD, selectedSample) * 25 + (getNodeLength(selectedCD, selectedSample) - 1) * 15}px;`"
                         ></span>
                     </span>
@@ -71,6 +71,10 @@ import trax_database from "@/trax_database";
 const emit = defineEmits(['addTrack', 'removeTrack', 'seekPosition', 'clickCell']);
 
 const props = defineProps({
+    isPlaying: {
+        type: Boolean,
+        default: false,
+    },
     songPosition: {
         type: Number,
         default: 0,

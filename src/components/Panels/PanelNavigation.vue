@@ -20,13 +20,16 @@
         <nav>
             <TraxButton
                 mdi="folder-open"
+                @click="emit('openSong')"
             />
             <TraxButton
                 mdi="content-save"
+                @click="emit('saveSong')"
             />
             <TraxButton
                 mdi="export-variant"
                 color="primary"
+                @click="emit('renderSong')"
             />
         </nav>
     </section>
@@ -34,6 +37,8 @@
 
 <script setup>
 import TraxButton from "@/components/TraxButton.vue";
+
+const emit = defineEmits(['openSong', 'saveSong', 'renderSong']);
 
 defineProps({
     trackMeta: {

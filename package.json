@@ -11,6 +11,7 @@
   "dependencies": {
     "@fontsource-variable/work-sans": "^5.0.2",
     "@mdi/font": "^7.2.96",
+    "audiobuffer-to-wav": "^1.0.0",
     "sass": "^1.62.1",
     "vue": "^3.3.2"
   },
