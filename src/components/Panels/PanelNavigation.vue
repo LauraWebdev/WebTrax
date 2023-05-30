@@ -14,6 +14,7 @@
             mdi="pencil"
             color="transparent"
             @click="() => { overlayActiveTrackMeta = true; }"
+            :disabled="isLoadingSamples"
         />
 
         <div class="spacer"></div>
@@ -22,15 +23,18 @@
             <TraxButton
                 mdi="folder-open"
                 @click="emit('openSong')"
+                :disabled="isLoadingSamples"
             />
             <TraxButton
                 mdi="content-save"
                 @click="emit('saveSong')"
+                :disabled="isLoadingSamples"
             />
             <TraxButton
                 mdi="export-variant"
                 color="primary"
                 @click="emit('renderSong')"
+                :disabled="isLoadingSamples"
             />
         </nav>
     </section>
@@ -53,6 +57,10 @@ import OverlayExportImport from "@/components/Overlays/OverlayExportImport.vue";
 const emit = defineEmits(['openSong', 'saveSong', 'renderSong', 'changeMeta']);
 
 defineProps({
+    isLoadingSamples: {
+        type: Boolean,
+        default: false,
+    },
     trackMeta: {
         type: Object,
         required: true,

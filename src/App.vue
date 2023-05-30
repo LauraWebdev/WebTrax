@@ -5,6 +5,7 @@
         @change-meta="changeMeta"
         @save-song="saveSong"
         @open-song="openSong"
+        :is-loading-samples="isLoadingSamples"
     />
 
     <PanelLoadingSamples
