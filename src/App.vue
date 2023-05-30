@@ -3,6 +3,8 @@
         :track-meta="trackMeta"
         @render-song="renderSong"
         @change-meta="changeMeta"
+        @save-song="saveSong"
+        @open-song="openSong"
     />
 
     <PanelLoadingSamples
@@ -41,6 +43,13 @@
     <PanelStatus
         v-if="!isLoadingSamples"
     />
+
+    <OverlayExportImport
+        :active="overlayActiveImportExport"
+        :data="importExportData"
+        @close="() => { overlayActiveImportExport = false; }"
+        @change="importSong"
+    />
 </template>
 
 <script setup>
@@ -52,6 +61,7 @@ import PanelTimeline from "@/components/Panels/PanelTimeline.vue";
 import toWav from 'audiobuffer-to-wav';
 import trax_database from "@/trax_database";
 import PanelLoadingSamples from "@/components/Panels/PanelLoadingSamples.vue";
+import OverlayExportImport from "@/components/Overlays/OverlayExportImport.vue";
 
 const trackMeta = ref({ title: 'Untitled Trax Song', artist: 'Unknown Artist'});
 const trackLength = ref(20);
@@ -61,6 +71,8 @@ const selectedTool = ref('place');
 const selectedCD = ref(3);
 const selectedSample = ref(1);
 
+const overlayActiveImportExport = ref(false);
+const importExportData = ref('');
 const isLoadingSamples = ref(false);
 const loadingProgress = ref(0);
 const sampleBuffers = ref({});
@@ -159,6 +171,31 @@ const stopSong = () => {
     sourceNodes.value = [];
 };
 
+const saveSong = () => {
+    importExportData.value = JSON.stringify({
+        meta: trackMeta.value,
+        tracks: trackNodes.value,
+        length: trackLength.value,
+    });
+
+    overlayActiveImportExport.value = true;
+};
+const openSong = (_data) => {
+    importExportData.value = '';
+    overlayActiveImportExport.value = true;
+};
+const importSong = (_data) => {
+    overlayActiveImportExport.value = false;
+
+    importExportData.value = _data;
+    let parsedData = JSON.parse(importExportData.value);
+
+    // TODO: Sanity Checks
+    trackMeta.value = parsedData.meta;
+    trackNodes.value = parsedData.tracks;
+    trackLength.value = parsedData.length;
+};
+
 const addTrack = () => {
     trackNodes.value.push([]);
 };
@@ -188,7 +225,7 @@ const clickCell = (_track, _cell) => {
 
 const removeNode = (_track, _cell) => {
     let track = trackNodes.value[_track];
-    let existingItem = track.findIndex(x => x.pos === _cell - 1);
+    let existingItem = track.findIndex(x => x.position === _cell - 1);
 
     if(existingItem !== -1) {
         track.splice(existingItem, 1);
@@ -196,7 +233,7 @@ const removeNode = (_track, _cell) => {
 };
 const pickNode = (_track, _cell) => {
     let track = trackNodes.value[_track];
-    let existingItem = track.find(x => x.pos === _cell - 1);
+    let existingItem = track.find(x => x.position === _cell - 1);
 
     if(existingItem) {
         selectedCD.value = existingItem.cd;
@@ -211,7 +248,7 @@ const addNode = (_track, _cell) => {
 
     // Remove overlapping items
     for(let i = -1; i < selectedSampleLength - 1; i++) {
-        let forwardCellCheck = track.findIndex(x => x.pos === _cell + i);
+        let forwardCellCheck = track.findIndex(x => x.position === _cell + i);
 
         // TODO: This does not account for items that are before the clicked cell and are longer than 1
 
@@ -228,7 +265,7 @@ const addNode = (_track, _cell) => {
     trackNodes.value[_track].push({
         cd: selectedCD.value,
         sample: selectedSample.value,
-        pos: _cell - 1,
+        position: _cell - 1,
     });
 
     // Extend Track if longer
@@ -242,7 +279,7 @@ const addSourceNodesToAudioContext = (_audioContext) => {
     trackNodes.value.forEach((track) => {
         track.forEach(sample => {
             let url = `/trax/audio/${sample.cd}_${sample.sample}.mp3`;
-            let offset = sample.pos - songPlayPosition.value;
+            let offset = sample.position - songPlayPosition.value;
             if(offset > 0) {
                 sourceNodes.value.push(createSourceNode(_audioContext, sampleBuffers.value[url], offset, getSampleLength(sample.cd, sample.sample)));
             }

@@ -63,11 +63,25 @@ defineProps({
             background: rgba(255, 255, 255, 0.07);
             border: 0;
             color: rgb(255, 255, 255);
-            font-family: 'Work Sans', sans-serif;
+            font-family: 'Work Sans Variable', sans-serif;
             font-size: 1em;
             border-radius: 4px;
             padding: 0 15px;
             height: 40px;
+
+            &:disabled {
+                opacity: 0.4;
+                cursor: not-allowed;
+            }
+        }
+        & textarea {
+            background: rgba(255, 255, 255, 0.07);
+            border: 0;
+            color: rgb(255, 255, 255);
+            font-size: 1em;
+            font-family: 'Work Sans Variable', sans-serif;
+            border-radius: 4px;
+            padding: 15px;
 
             &:disabled {
                 opacity: 0.4;
@@ -83,7 +97,7 @@ defineProps({
                 background: rgba(255, 255, 255, 0.07);
                 border: 0;
                 color: rgb(255, 255, 255);
-                font-family: 'Work Sans', sans-serif;
+                font-family: 'Work Sans Variable', sans-serif;
                 font-size: 1em;
                 border-radius: 4px;
                 padding: 0 15px;

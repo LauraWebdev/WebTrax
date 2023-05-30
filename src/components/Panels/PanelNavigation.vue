@@ -48,6 +48,7 @@
 import TraxButton from "@/components/TraxButton.vue";
 import OverlayMeta from "@/components/Overlays/OverlayMeta.vue";
 import {ref} from "vue";
+import OverlayExportImport from "@/components/Overlays/OverlayExportImport.vue";
 
 const emit = defineEmits(['openSong', 'saveSong', 'renderSong', 'changeMeta']);
 

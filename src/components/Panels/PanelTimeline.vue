@@ -43,7 +43,7 @@
                         @click="isPlaying ? false : emit('clickCell', trackI, i2)"
                     >
                         <template
-                            v-for="node in [nodes.find(x => x.pos === i2 - 1)]"
+                            v-for="node in [nodes.find(x => x.position === i2 - 1)]"
                         >
                             <span
                                 v-if="node"
