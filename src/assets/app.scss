@@ -1,0 +1,17 @@
+:root {
+    font-family: 'Work Sans Variable', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    --colorPrimary: 232, 77, 177;
+    --colorSecondary: 113, 79, 172;
+    --colorError: 255, 56, 99;
+    --colorSuccess: 61, 251, 132;
+}
+
+html, body {
+    background: #222;
+    color: #fff;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
