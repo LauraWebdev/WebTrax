@@ -17,11 +17,9 @@
 </template>
 
 <script setup>
-import {ref, watchEffect} from "vue";
-
 const emit = defineEmits(['click', 'mouseenter', 'mouseleave']);
 
-const props = defineProps({
+defineProps({
     label: {
         type: [String, Boolean],
         default: false,
