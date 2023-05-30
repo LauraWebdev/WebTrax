@@ -13,6 +13,7 @@
         <TraxButton
             mdi="pencil"
             color="transparent"
+            @click="() => { overlayActiveTrackMeta = true; }"
         />
 
         <div class="spacer"></div>
@@ -33,12 +34,22 @@
             />
         </nav>
     </section>
+
+    <OverlayMeta
+        :active="overlayActiveTrackMeta"
+        @close="() => { overlayActiveTrackMeta = false; }"
+        @change="(_title, _artist) => { overlayActiveTrackMeta = false; emit('changeMeta', _title, _artist) }"
+        :title="trackMeta.title"
+        :artist="trackMeta.artist"
+    />
 </template>
 
 <script setup>
 import TraxButton from "@/components/TraxButton.vue";
+import OverlayMeta from "@/components/Overlays/OverlayMeta.vue";
+import {ref} from "vue";
 
-const emit = defineEmits(['openSong', 'saveSong', 'renderSong']);
+const emit = defineEmits(['openSong', 'saveSong', 'renderSong', 'changeMeta']);
 
 defineProps({
     trackMeta: {
@@ -46,6 +57,8 @@ defineProps({
         required: true,
     },
 });
+
+const overlayActiveTrackMeta = ref(false);
 </script>
 
 <style lang="scss" scoped>

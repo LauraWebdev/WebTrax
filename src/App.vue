@@ -2,6 +2,7 @@
     <PanelNavigation
         :track-meta="trackMeta"
         @render-song="renderSong"
+        @change-meta="changeMeta"
     />
 
     <PanelLoadingSamples
@@ -123,6 +124,11 @@ const changeCD = (_CD) => {
 };
 const changeSample = (_sample) => {
     selectedSample.value = _sample;
+};
+
+const changeMeta = (_title, _artist) => {
+    trackMeta.value.title = _title;
+    trackMeta.value.artist = _artist;
 };
 
 const playSong = () => {
