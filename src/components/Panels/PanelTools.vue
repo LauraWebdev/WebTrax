@@ -48,7 +48,7 @@
             />
             <TraxButton
                 v-for="i in 9"
-                :mdi="`numeric-${i}`"
+                :mdi="getIcon(i)"
                 :color="selectedSample === i ? 'bright' : 'default'"
                 @click="selectSample(i)"
                 @mouseenter="playSample(i)"
@@ -136,6 +136,29 @@ const cdArtist = computed(() => {
 const cdColor = computed(() => {
     return getCDColor(props.selectedCD);
 });
+
+const getIcon = (_sampleId) => {
+    switch(_sampleId) {
+        case 1:
+            return 'circle-outline';
+        case 2:
+            return 'checkbox-blank-outline';
+        case 3:
+            return 'rhombus-outline';
+        case 4:
+            return 'chevron-left';
+        case 5:
+            return 'infinity';
+        case 6:
+            return 'multiplication';
+        case 7:
+            return 'equal';
+        case 8:
+            return 'close';
+        case 9:
+            return 'cards-heart-outline';
+    }
+};
 </script>
 
 <style lang="scss" scoped>

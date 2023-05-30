@@ -49,13 +49,17 @@
                                 v-if="node"
                                 class="node"
                                 :style="`width: ${getNodeLength(node.cd, node.sample) * 25 + (getNodeLength(node.cd, node.sample) - 1) * 15}px; background: ${ getCDColor(node.cd) };`"
-                            >{{ node.sample }}</span>
+                            >
+                                <span :class="`mdi mdi-${getIcon(node.sample)}`"></span>
+                            </span>
                         </template>
                         <span
                             class="node-ghost"
                             v-if="activeTrack === trackI && activeCell === i2 && selectedTool === 'place' && !isPlaying"
                             :style="`width: ${getNodeLength(selectedCD, selectedSample) * 25 + (getNodeLength(selectedCD, selectedSample) - 1) * 15}px; opacity: 0.3; background: ${ getCDColor(selectedCD) };`"
-                        ></span>
+                        >
+                            <span :class="`mdi mdi-${getIcon(selectedSample)}`"></span>
+                        </span>
                     </span>
                 </div>
             </div>
@@ -143,6 +147,29 @@ const cellOut = (_track, _cell) => {
 
 const getNodeLength =(_cd, _sample) => {
     return trax_database.find(x => x.cd === _cd)?.samples.find(x => x.sample === _sample)?.length * 2 ?? 1;
+};
+
+const getIcon = (_sampleId) => {
+    switch(_sampleId) {
+        case 1:
+            return 'circle-outline';
+        case 2:
+            return 'checkbox-blank-outline';
+        case 3:
+            return 'rhombus-outline';
+        case 4:
+            return 'chevron-left';
+        case 5:
+            return 'infinity';
+        case 6:
+            return 'multiplication';
+        case 7:
+            return 'equal';
+        case 8:
+            return 'close';
+        case 9:
+            return 'cards-heart-outline';
+    }
 };
 </script>
 
@@ -239,27 +266,26 @@ const getNodeLength =(_cd, _sample) => {
                     padding: 10px 7px;
                     position: relative;
 
-                    & .node {
+                    & .node, & .node-ghost {
                         position: absolute;
                         z-index: 10;
                         height: 25px;
-                        background: rgb(var(--colorPrimary));
                         border-radius: 5px;
                         display: flex;
                         align-items: center;
                         justify-content: center;
+
+                        & .mdi {
+                            font-size: 16px;
+                        }
+                    }
+
+                    & .node {
+                        background: rgb(var(--colorPrimary));
                     }
 
                     & .node-ghost {
-                        position: absolute;
-                        z-index: 10;
-                        min-width: 25px;
-                        height: 25px;
                         background: rgba(var(--colorPrimary), 0.1);
-                        border-radius: 5px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
                         pointer-events: none;
                     }
                 }
