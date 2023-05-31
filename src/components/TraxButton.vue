@@ -133,6 +133,7 @@ button {
         & .label {
             font-family: 'Work Sans Variable', sans-serif;
             font-size: 1em;
+            text-align: left;
         }
         & .sublabel {
             font-family: 'Work Sans Variable', sans-serif;

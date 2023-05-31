@@ -99,22 +99,28 @@ onMounted(async () => {
         }
     });
 
-    console.log("[App] Buffering");
-    isLoadingSamples.value = true;
-
     audioContext.value = new AudioContext();
 
-    for (const cd of trax_database) {
-        for (const sample of cd.samples) {
-            let url = `./trax/audio/${cd.cd}_${sample.sample}.mp3`;
-            sampleBuffers.value[url] = await loadAudioAsBuffer(url);
-            loadingProgress.value++;
-        }
-    }
-
+    isLoadingSamples.value = true;
+    await bufferCD(selectedCD.value);
     isLoadingSamples.value = false;
-    console.log("[App] Buffering done");
 });
+
+const bufferCD = async (_cd) => {
+    console.log("[App] Buffering");
+    loadingProgress.value = 0;
+
+    const cd = trax_database.find(x => x.cd === _cd);
+
+    let samplesLoaded = 0;
+    for (const sample of cd.samples) {
+        let url = `./trax/audio/${cd.cd}_${sample.sample}.mp3`;
+        sampleBuffers.value[url] = await loadAudioAsBuffer(url);
+        samplesLoaded++;
+        loadingProgress.value = Math.round(samplesLoaded / cd.samples.length * 100);
+    }
+    console.log("[App] Buffering done");
+};
 
 const loadAudioAsBuffer = async (url) => {
     const response = await fetch(url);
@@ -132,8 +138,9 @@ const createSourceNode = (_audioContext, _audioBuffer, _position, _length) => {
 const changeTool = (_tool) => {
     selectedTool.value = _tool;
 };
-const changeCD = (_CD) => {
+const changeCD = async (_CD) => {
     selectedCD.value = _CD;
+    await bufferCD(_CD);
 };
 const changeSample = (_sample) => {
     selectedSample.value = _sample;
@@ -185,7 +192,7 @@ const openSong = () => {
     importExportData.value = '';
     overlayActiveImportExport.value = true;
 };
-const importSong = (_data) => {
+const importSong = async (_data) => {
     overlayActiveImportExport.value = false;
 
     importExportData.value = _data;
@@ -195,6 +202,14 @@ const importSong = (_data) => {
     trackMeta.value = parsedData.meta;
     trackNodes.value = parsedData.tracks;
     trackLength.value = parsedData.length;
+
+    // Buffer used CDs
+    let usedCDs = [...new Set(trackNodes.value.flat().map(x => x.cd))];
+    isLoadingSamples.value = true;
+    for (const cd of usedCDs) {
+        await bufferCD(cd);
+    }
+    isLoadingSamples.value = false;
 };
 
 const addTrack = () => {
