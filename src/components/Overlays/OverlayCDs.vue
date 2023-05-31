@@ -9,7 +9,7 @@
         :label="cd.meta.title"
         :sublabel="cd.meta.artist"
         :color="inputSelectedCD === cd.cd ? 'bright' : 'default'"
-        align="left"
+        align="flex-start"
         @click="inputSelectedCD = cd.cd"
       />
     </main>
@@ -68,7 +68,7 @@ dialog {
     border-radius: 6px;
     padding: 0;
     width: calc(100% - 50px);
-    max-width: 700px;
+    max-width: 800px;
     max-height: calc(100% - 50px);
     grid-template-rows: auto 1fr auto;
 
