@@ -92,6 +92,14 @@ onMounted(async () => {
         if(event.ctrlKey) {
             selectedTool.value = 'picker';
         }
+
+        if(event.code === "Space") {
+            if(isPlaying.value) {
+                stopSong();
+            } else {
+                playSong();
+            }
+        }
     });
     document.addEventListener('keyup', (event) => {
         if(!event.shiftKey && !event.ctrlKey) {
